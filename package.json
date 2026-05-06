@@ -1,0 +1,24 @@
+{
+  "name": "lista-presenca-node",
+  "version": "1.0.0",
+  "description": "Projeto para desenvolver com NodeJS e Exercitar sobre testes automatizados",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CalebeFelipe/Lista-Presenca-Node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CalebeFelipe/Lista-Presenca-Node/issues"
+  },
+  "homepage": "https://github.com/CalebeFelipe/Lista-Presenca-Node#readme",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}

@@ -1,0 +1,6 @@
+descricao_projeto.md
+/node_modules
+/dist
+/build
+/.env
+/logs
