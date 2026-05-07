@@ -1,4 +1,4 @@
-const { calculateMinutes } = require('../src/business-logic');
+const { calculateMinutes, validateCheckInOut } = require('../src/business-logic');
 
 describe('calculateMinutes', () => {
 
@@ -27,4 +27,13 @@ describe('calculateMinutes', () => {
         expect(result).toBe(expectedMinutes);
     });
 
+});
+
+describe('validateCheckInOut', () => {
+    it('deve informar erro se o horário de check-out for anterior ao horário de check-in', () => {
+        const checkIn = '14:00';
+        const checkOut = '13:00';
+
+        expect(() => validateCheckInOut(checkIn, checkOut)).toThrow('O horário de check-out deve ser posterior ao horário de check-in.');
+    });
 });
