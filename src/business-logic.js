@@ -1,19 +1,18 @@
-function calculateMinutes(checkIn, checkOut) {
-    const [checkInHours, checkInMinutes] = checkIn.split(':').map(Number);
-    const [checkOutHours, checkOutMinutes] = checkOut.split(':').map(Number);
+function timeToMinutes(time) {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+}
 
-    const totalCheckInMinutes = checkInHours * 60 + checkInMinutes;
-    const totalCheckOutMinutes = checkOutHours * 60 + checkOutMinutes;
+function calculateMinutes(checkIn, checkOut) {
+    const totalCheckInMinutes = timeToMinutes(checkIn);
+    const totalCheckOutMinutes = timeToMinutes(checkOut);
 
     return totalCheckOutMinutes - totalCheckInMinutes;
 }
 
 function validateCheckInOut(checkIn, checkOut) {
-    const [checkInHours, checkInMinutes] = checkIn.split(':').map(Number);
-    const [checkOutHours, checkOutMinutes] = checkOut.split(':').map(Number);
-
-    const totalCheckInMinutes = checkInHours * 60 + checkInMinutes;
-    const totalCheckOutMinutes = checkOutHours * 60 + checkOutMinutes;
+    const totalCheckInMinutes = timeToMinutes(checkIn);
+    const totalCheckOutMinutes = timeToMinutes(checkOut);
 
     if (totalCheckOutMinutes <= totalCheckInMinutes) {
         throw new Error('O horário de check-out deve ser posterior ao horário de check-in.');
