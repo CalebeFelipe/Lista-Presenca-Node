@@ -19,4 +19,10 @@ function validateCheckInOut(checkIn, checkOut) {
     }
 }
 
-module.exports = { calculateMinutes, validateCheckInOut };
+function validateActiveCheckIn(activeCheckIn) {
+    if (!activeCheckIn) {
+        throw new Error('Nenhum check-in ativo encontrado.');
+    }
+}
+
+module.exports = { calculateMinutes, validateCheckInOut, validateActiveCheckIn };

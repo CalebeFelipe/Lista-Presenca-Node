@@ -1,4 +1,4 @@
-const { calculateMinutes, validateCheckInOut } = require('../src/business-logic');
+const { calculateMinutes, validateCheckInOut, validateActiveCheckIn } = require('../src/business-logic');
 
 describe('calculateMinutes', () => {
 
@@ -6,7 +6,7 @@ describe('calculateMinutes', () => {
         // Arrange (Preparar)
         const checkIn = '08:00';
         const checkOut = '12:00';
-        const expectedMinutes = 240; 
+        const expectedMinutes = 240;
 
         // Act (Agir)
         const result = calculateMinutes(checkIn, checkOut);
@@ -16,14 +16,14 @@ describe('calculateMinutes', () => {
     });
 
     it('deve calcular a duração corretamente quando os horários possuem minutos quebrados', () => {
-        
+
         const checkIn = '09:30';
         const checkOut = '17:45';
         const expectedMinutes = 495;
 
         const result = calculateMinutes(checkIn, checkOut);
 
-        
+
         expect(result).toBe(expectedMinutes);
     });
 
@@ -36,4 +36,19 @@ describe('validateCheckInOut', () => {
 
         expect(() => validateCheckInOut(checkIn, checkOut)).toThrow('O horário de check-out deve ser posterior ao horário de check-in.');
     });
+});
+
+describe('validateActiveCheckIn', () => {
+    it('deve lançar um erro se não encontrar um check-in ativo', () => {
+        const activeCheckIn = undefined;
+
+        expect(() => validateActiveCheckIn(activeCheckIn)).toThrow('Nenhum check-in ativo encontrado.');
+    });
+
+    it('não deve lançar um erro se encontrar um check-in ativo', () => {
+        const activeCheckIn = { id: 1, checkInTime: '08:00' };
+
+        expect(() => validateActiveCheckIn(activeCheckIn)).not.toThrow();
+    });
+
 });
